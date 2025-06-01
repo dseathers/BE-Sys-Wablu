@@ -9,6 +9,7 @@ use App\Http\Controllers\DDL\StatusddlController;
 use App\Http\Controllers\Login\LoginInfoController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Transaction\IssueController;
+use App\Http\Controllers\Transaction\TransactionReqDtl;
 use App\Http\Controllers\Transaction\TransactionRequestor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,7 @@ Route::get('/user', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [LogoutController::class, 'logout']);
     Route::post('/get-transaction-by-requestor', [TransactionRequestor::class, 'index']);
+    Route::post('/get-transaction-by-requestor-dtl', [TransactionReqDtl::class, 'index']);
 });
 
 Route::post('/get-login-info', [LoginInfoController::class, 'index']);

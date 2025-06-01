@@ -20,6 +20,8 @@ class TransRequestor extends Model
         'acceptor_id',
         'status',
         'priority',
+        'created_by',
+        'created_by_id'
     ];
 
     protected $casts =[
@@ -31,5 +33,7 @@ class TransRequestor extends Model
         'acceptor_id'=>'string',
         'status'=>'string',
         'priority'=>'string',
+        'created_by'=>'string',
+        'created_by_id'=>'string'
     ];
 }
