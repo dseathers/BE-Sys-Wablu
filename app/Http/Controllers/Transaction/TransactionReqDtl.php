@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Transaction;
 
-use App\Models\TransRequestor;
+use App\Models\TransRequestorDtl;
 use Illuminate\Http\Request;
 
 class TransactionReqDtl
@@ -27,7 +27,7 @@ class TransactionReqDtl
             ]);
         }
 
-        $getListDtl = TransRequestor::where('created_by_id', $createdBy)->where('issueid', $issueId)->get();
+        $getListDtl = TransRequestorDtl::where('created_by_id', $createdBy)->where('issueid', $issueId)->get();
 
         if($getListDtl->isEmpty()){
             return response()->json([
