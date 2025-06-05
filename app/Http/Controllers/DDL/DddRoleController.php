@@ -8,6 +8,10 @@ class DddRoleController
 {
     public function index(){
         $roles = Role::all();
-        return response()->json($roles);
+        return response()->json([
+            'status' => 'success',  
+            'code' => 200,
+            'data' => $roles
+        ]);
     }
 }
