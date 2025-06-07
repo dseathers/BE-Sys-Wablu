@@ -13,6 +13,7 @@ class TransRequestor extends Model
 
     protected $fillable = [
         'issueid',
+        'issue_no',
         'title',
         'requestor',
         'requestor_id',
@@ -26,6 +27,7 @@ class TransRequestor extends Model
 
     protected $casts =[
         'issueid'=>'string',
+        'issue_no'=>'string',
         'title'=>'string',
         'requestor'=>'string',
         'requestor_id'=>'string',

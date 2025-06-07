@@ -12,6 +12,7 @@ class IssueController
         $request->validate([
             'title'=> 'required|string|max:255',
             'issueid'=> 'nullable|string',
+            'issue_no'=> 'nullable|string',
             'requestor'=> 'required|string',
             'acceptor'=> 'required|string',
             'status'=> 'required|string',
@@ -38,6 +39,8 @@ class IssueController
         if (!is_null($request->input('issueid'))) {
             $data['issueid'] = $request->input('issueid');
         }
+
+        $data['issue_no'] = $request->input('issue_no') ?? str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
 
         $issue = TransIssue::create($data);
 
