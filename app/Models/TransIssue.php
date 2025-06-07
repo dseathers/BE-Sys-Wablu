@@ -13,6 +13,7 @@ class TransIssue extends Model
     protected $fillable = [
         'title',
         'issueid',
+        'issue_no',
         'requestor',
         'acceptor',
         'status',
@@ -25,6 +26,7 @@ class TransIssue extends Model
     ];
 
     protected $casts =[
-        'id'=>'string'
+        'id'=>'string',
+        'issue_no'=>'string'
     ];
 }
