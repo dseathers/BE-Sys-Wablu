@@ -27,7 +27,15 @@ class TransactionReqDtl
             ]);
         }
 
-        $getListDtl = TransRequestorDtl::where('created_by_id', $createdBy)->where('issueid', $issueId)->get();
+        $id = $request->input('id');
+        if(!$id){
+            return response()->json([
+                'success' => false,
+                'message' => 'id is required'
+            ]);
+        }
+
+        $getListDtl = TransRequestorDtl::where('created_by_id', $createdBy)->where('issueid', $issueId)->where('id', $id)->get();
 
         if($getListDtl->isEmpty()){
             return response()->json([

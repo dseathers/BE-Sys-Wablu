@@ -14,7 +14,10 @@ class TransactionRequestor
     $pageNumber = (int) $request->input('pageNumber', 0);
     $orderBy = $request->input('orderBy', 'desc');
     $sortBy = $request->input('sortBy', 'issueid');
-    $search = $request->input('search'); // Tambahan: input search dari user
+    $search = $request->input('search');
+    $status = $request->input('status');
+    $priority = $request->input('priority');
+    $assignee = $request->input('assignee');
 
     $orderBy = !empty($orderBy) ? $orderBy : 'desc';
     $sortBy = !empty($sortBy) ? $sortBy : 'issueid';
@@ -31,7 +34,19 @@ class TransactionRequestor
     $query = TransRequestor::where('created_by_id', $createdBy);
 
     if (!empty($search)) {
-        $query->where('filter', 'ILIKE', '%' . $search . '%'); // pakai ILIKE untuk case-insensitive (PostgreSQL)
+        $query->where('filter', 'ILIKE', '%' . $search . '%');
+    }
+
+    if(!empty($status)){
+        $query->where('status_id', $status);
+    }
+
+    if(!empty($priority)){
+        $query->where('priority_id', $priority);
+    }
+
+    if(!empty($assignee)){
+        $query->where('acceptor_id', $assignee);
     }
 
     $total = $query->count();
