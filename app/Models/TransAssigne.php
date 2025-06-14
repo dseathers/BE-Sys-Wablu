@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TransRequestorDtl extends Model
+class TransAssigne extends Model
 {
-    protected $table = 'trc.vw_transaction_by_requestor_dtl';
+    protected $table = 'trc.vw_transaction_by_requestor';
     protected $primaryKey = null;
     public $incrementing = false;
     public $timestamps = false;
@@ -20,9 +20,6 @@ class TransRequestorDtl extends Model
         'requestor_id',
         'acceptor',
         'acceptor_id',
-        'content',
-        'path',
-        'remarks',
         'status',
         'status_id',
         'priority',
@@ -40,9 +37,6 @@ class TransRequestorDtl extends Model
         'requestor_id'=>'string',
         'acceptor'=>'string',
         'acceptor_id'=>'string',
-        'content'=>'string',
-        'path'=>'string',
-        'remarks'=>'string',
         'status'=>'string',
         'status_id'=>'string',
         'priority'=>'string',

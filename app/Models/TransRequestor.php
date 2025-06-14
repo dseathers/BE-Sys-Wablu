@@ -12,6 +12,7 @@ class TransRequestor extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'id',
         'issueid',
         'issue_no',
         'title',
@@ -20,12 +21,15 @@ class TransRequestor extends Model
         'acceptor',
         'acceptor_id',
         'status',
+        'status_id',
         'priority',
+        'priority_id',
         'created_by',
         'created_by_id'
     ];
 
     protected $casts =[
+        'id'=>'string',
         'issueid'=>'string',
         'issue_no'=>'string',
         'title'=>'string',
@@ -34,7 +38,9 @@ class TransRequestor extends Model
         'acceptor'=>'string',
         'acceptor_id'=>'string',
         'status'=>'string',
+        'status_id'=>'string',
         'priority'=>'string',
+        'priority_id'=>'string',
         'created_by'=>'string',
         'created_by_id'=>'string'
     ];
