@@ -10,6 +10,7 @@ class TransactionRequestor
     public function index(Request $request)
     {
     $createdBy = $request->input('created_by_id');
+    $acceptor = $request->input('acceptor_id');
     $pageSize = (int) $request->input('pageSize', 10);
     $pageNumber = (int) $request->input('pageNumber', 0);
     $orderBy = $request->input('orderBy', 'desc');
@@ -29,9 +30,19 @@ class TransactionRequestor
         ]);
     }
 
+    if (!$acceptor){
+        return response()->json([
+            'success' => false,
+            'message' => 'acceptor_id is required'
+        ]);
+    }
+
     $offset = $pageNumber * $pageSize;
 
-    $query = TransRequestor::where('created_by_id', $createdBy);
+    $query = TransRequestor::where(function($q) use ($createdBy, $acceptor) {
+    $q->where('created_by_id', $createdBy)
+      ->orWhere('acceptor_id', $acceptor);
+});
 
     if (!empty($search)) {
         $query->where('filter', 'ILIKE', '%' . $search . '%');

@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Transaction;
 
-use App\Models\TransAssigne;
+use App\Models\TransRequestor;
 use Illuminate\Http\Request;
 
-class TransactionAssign
+class AllTransaction
 {
     public function index(Request $request)
     {
-    $createdBy = $request->input('created_by_id');
-    $acceptor = $request->input('acceptor_id');
     $pageSize = (int) $request->input('pageSize', 10);
     $pageNumber = (int) $request->input('pageNumber', 0);
     $orderBy = $request->input('orderBy', 'desc');
@@ -21,28 +19,11 @@ class TransactionAssign
     $assignee = $request->input('assignee');
 
     $orderBy = !empty($orderBy) ? $orderBy : 'desc';
-    $sortBy = !empty($sortBy) ? $sortBy : 'issueid';
-
-    if (!$acceptor) {
-        return response()->json([
-            'success' => false,
-            'message' => 'acceptor is required'
-        ]);
-    }
-
-    if(!$createdBy){
-        return response()->json([
-            'success' => false,
-            'message' => 'created by id is required'
-        ]);
-    }
+    $sortBy = !empty($sortBy) ? $sortBy : 'created_at';
 
     $offset = $pageNumber * $pageSize;
 
-    $query = TransAssigne::where(function($q) use ($createdBy, $acceptor) {
-    $q->where('created_by_id', $createdBy)
-      ->orWhere('acceptor_id', $acceptor);
-});
+    $query = TransRequestor::query();
 
     if (!empty($search)) {
         $query->where('filter', 'ILIKE', '%' . $search . '%');
