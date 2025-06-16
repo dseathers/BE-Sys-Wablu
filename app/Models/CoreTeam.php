@@ -15,5 +15,6 @@ class CoreTeam extends Model
         'team_name',
         'email',
         'role_id',
+        'file_id'
     ];
 }

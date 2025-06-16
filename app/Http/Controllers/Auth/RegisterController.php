@@ -17,7 +17,8 @@ class RegisterController
             'name' => 'required|string|max:100',
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|min:6',
-            'role_id' => 'required'
+            'role_id' => 'required',
+            'file_id'=>'required'
         ]);
 
         if ($validator->fails()) {
@@ -37,7 +38,8 @@ class RegisterController
         CoreTeam::create([
             'team_name' => $request->name,
             'email'     => $request->email,
-            'role_id'   => $request->role_id
+            'role_id'   => $request->role_id,
+            'file_id'   => $request->file_id
         ]);
 
         return response()->json([

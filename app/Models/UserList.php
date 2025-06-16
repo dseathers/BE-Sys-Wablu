@@ -23,5 +23,6 @@ class UserList extends Model
         'team_name' => 'string',
         'email' => 'string',
         'role_name' => 'string',
+        'file_id' => 'string'
     ];
 }
