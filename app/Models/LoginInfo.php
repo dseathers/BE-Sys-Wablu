@@ -18,6 +18,7 @@ class LoginInfo extends Model
         'team_name' => 'string',
         'email' => 'string',
         'role_id' => 'string',
-        'role_name' => 'string'
+        'role_name' => 'string',
+        'file_id' => 'string'
     ];
 }

@@ -10,6 +10,8 @@ use App\Http\Controllers\Login\LoginInfoController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DDL\QaDdlController;
+use App\Http\Controllers\Doc\ThumbnailController;
+use App\Http\Controllers\Doc\UploadController;
 use App\Http\Controllers\Transaction\AllTransaction;
 use App\Http\Controllers\Transaction\EditIssueController;
 use App\Http\Controllers\Transaction\HistoryController;
@@ -41,6 +43,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/get-transaction-all', [AllTransaction::class, 'index']);
     Route::post('/get-user-list', [UserListController::class, 'index']);
     Route::post('/user-register', [RegisterController::class, 'register']);
+    Route::post('/upload', [UploadController::class, 'upload']);
+    Route::post('/thumbnail', [ThumbnailController::class, 'index']);
 });
 
 Route::post('/get-login-info', [LoginInfoController::class, 'index']);
