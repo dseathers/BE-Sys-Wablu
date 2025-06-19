@@ -8,9 +8,6 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController
 {
-    /**
-     * Handle the incoming request.
-     */
     public function __invoke(Request $request)
     {
         $request->validate([

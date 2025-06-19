@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DDL\AdminddlController;
 use App\Http\Controllers\DDL\DddRoleController;
@@ -32,12 +33,6 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-// Route::options('{any}', function (Request $request) {
-//     return response('', 200)->header('Access-Control-Allow-Origin', '*')
-//                             ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-//                             ->header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
-// })->where('any', '.*');
-
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [LogoutController::class, 'logout']);
     Route::post('/get-transaction-by-requestor', [TransactionRequestor::class, 'index']);
@@ -54,6 +49,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/update-user-dtl', [EditUserController::class, 'updateRoleAndFile']);
     Route::get('/get-dashboard', [DashboardController::class, 'index']);
     Route::get('/get-dashboard-user-summary', [DashboardSumUserController::class, 'index']);
+    Route::post('/change-password', [ChangePasswordController::class, 'update']);
 });
 
 Route::get('/all-user-ddl', [AllUserController::class, 'index']);

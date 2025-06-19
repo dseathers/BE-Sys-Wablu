@@ -11,9 +11,16 @@ class LoginInfo extends Model
     public $incrementing = false;
     public $timestamps = false;
 
-    protected $fillable = ['team_id' => 'string', 'team_name' => 'string', 'email' => 'string', 'role_id' => 'string', 'role_name' => 'string'];
+    protected $fillable = [
+        'id'=> 'string',
+        'team_id' => 'string', 
+        'team_name' => 'string', 
+        'email' => 'string', 
+        'role_id' => 'string', 
+        'role_name' => 'string'];
 
     protected $casts = [
+        'id' => 'string',
         'team_id' => 'string',
         'team_name' => 'string',
         'email' => 'string',
