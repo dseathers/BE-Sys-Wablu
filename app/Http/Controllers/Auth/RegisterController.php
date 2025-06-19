@@ -18,7 +18,7 @@ class RegisterController
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|min:6',
             'role_id' => 'required',
-            'file_id'=>'required'
+            'file_id'=>'nullable'
         ]);
 
         if ($validator->fails()) {

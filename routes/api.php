@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DDL\AdminddlController;
 use App\Http\Controllers\DDL\DddRoleController;
@@ -9,16 +10,21 @@ use App\Http\Controllers\DDL\StatusddlController;
 use App\Http\Controllers\Login\LoginInfoController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\DDL\AllUserController;
 use App\Http\Controllers\DDL\QaDdlController;
 use App\Http\Controllers\Doc\ThumbnailController;
 use App\Http\Controllers\Doc\UploadController;
 use App\Http\Controllers\Transaction\AllTransaction;
+use App\Http\Controllers\Transaction\DashboardController;
+use App\Http\Controllers\Transaction\DashboardSumUserController;
 use App\Http\Controllers\Transaction\EditIssueController;
 use App\Http\Controllers\Transaction\HistoryController;
 use App\Http\Controllers\Transaction\IssueController;
 use App\Http\Controllers\Transaction\TransactionAssign;
 use App\Http\Controllers\Transaction\TransactionReqDtl;
 use App\Http\Controllers\Transaction\TransactionRequestor;
+use App\Http\Controllers\User\EditUserController;
+use App\Http\Controllers\User\UserDetailController;
 use App\Http\Controllers\User\UserListController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,12 +32,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
-
-// Route::options('{any}', function (Request $request) {
-//     return response('', 200)->header('Access-Control-Allow-Origin', '*')
-//                             ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-//                             ->header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
-// })->where('any', '.*');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [LogoutController::class, 'logout']);
@@ -45,8 +45,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/user-register', [RegisterController::class, 'register']);
     Route::post('/upload', [UploadController::class, 'upload']);
     Route::post('/thumbnail', [ThumbnailController::class, 'index']);
+    Route::post('/get-user-dtl', [UserDetailController::class, 'index']);
+    Route::post('/update-user-dtl', [EditUserController::class, 'updateRoleAndFile']);
+    Route::get('/get-dashboard', [DashboardController::class, 'index']);
+    Route::get('/get-dashboard-user-summary', [DashboardSumUserController::class, 'index']);
+    Route::post('/change-password', [ChangePasswordController::class, 'update']);
 });
 
+Route::get('/all-user-ddl', [AllUserController::class, 'index']);
 Route::post('/get-login-info', [LoginInfoController::class, 'index']);
 Route::post('/user-login', LoginController::class);
 Route::get('/role-ddl', [DddRoleController::class, 'index']);

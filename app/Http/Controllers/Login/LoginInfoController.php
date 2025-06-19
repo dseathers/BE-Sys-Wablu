@@ -9,10 +9,6 @@ use App\Models\LoginInfo;
 
 class LoginInfoController 
 {
-    /**
-     * Menampilkan data login berdasarkan email pengguna.
-     * Route: GET api/get-login-info?email=example@example.com
-     */
     public function index(Request $request)
     {
         $email = $request->input('email');
